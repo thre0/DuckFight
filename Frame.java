@@ -64,6 +64,7 @@ public class Frame {
         this.FrameNo=Integer.parseInt(Rid);
         this.PosX=Integer.parseInt(Rx);
         this.PosY=Integer.parseInt(Ry);
+        this.Frame=Frame;
         ISum=Integer.parseInt(Sum);
         
         if(ISum == this.CheckSum())
