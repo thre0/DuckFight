@@ -162,14 +162,19 @@ public class NetGame {
             System.out.println("Server Received: "+DuckIn.readUTF());
             
             //Nxy=Framework.mousePosition();
-            /*try{
+            System.out.println("Size before send: " +Frames.size());
+            if(LastFrame<Frames.size()){
+                
+                System.out.println("LastFrame="+ LastFrame+" Size: "+ Frames.size());
                 DuckOut.writeUTF(Frames.get(LastFrame+1).CreateFrame());
+                System.out.println("LastFrame="+ LastFrame);
                 LastFrame +=1;
-                System.out.println(Frames.get(LastFrame).getFrame());
+                System.out.println("LastFrame="+ LastFrame);
+                System.out.println("Server Sent: "+Frames.get(LastFrame).getFrame());
             }
-            catch(IOException ee){
-                System.out.println("Cannot send frame "+ (LastFrame+1));
-            }*/
+            else{
+                System.out.println("Waiting for more frames, last to send: "+ (LastFrame+1));
+            }
 
             
             //GameSocket.isConnected();
@@ -208,7 +213,21 @@ public class NetGame {
                 connected = true;
              }
              //outToServer  = GameSocket.getOutputStream();
-             DuckOut.writeUTF("ClientFrame TBD");
+            System.out.println("Size before send: " +Frames.size());
+            if(LastFrame<Frames.size()){
+                
+                System.out.println("LastFrame="+ LastFrame+" Size: "+ Frames.size());
+                DuckOut.writeUTF(Frames.get(LastFrame+1).CreateFrame());
+                System.out.println("LastFrame="+ LastFrame);
+                LastFrame +=1;
+                System.out.println("LastFrame="+ LastFrame);
+                System.out.println("Server Sent: "+Frames.get(LastFrame).getFrame());
+            }
+            else{
+                System.out.println("Waiting for more frames, last to send: "+ (LastFrame+1));
+            }
+            
+            
              DuckIn = new DataInputStream(GameSocket.getInputStream());
              System.out.println(DuckIn.readUTF());
         }
@@ -250,10 +269,11 @@ public class NetGame {
         //if(mousePosition.y<=0) YPos =5 ; else YPos =mousePosition.y;
         if(XPos!=0&&YPos!=0){
             PlayerDuck.TeleportDuck(XPos, YPos);
-            Frames.add(new Frame(FrameCounter,XPos,YPos));
+        }    
+            Frames.add(new Frame(FrameCounter,PlayerDuck.x,PlayerDuck.y));
             //System.out.println("Frames"+FrameCounter);
             FrameCounter+=1;
-        }
+        
         if(connected)SecondDuck.TeleportDuck(XNet, YNet);
         //System.out.println(mousePosition.x + "||" + mousePosition.y);
         //for(int i = 0; i < TargetDucks.size(); i++){
