@@ -270,7 +270,7 @@ public class NetGame {
         if(XPos!=0&&YPos!=0){
             PlayerDuck.TeleportDuck(XPos, YPos);
         }    
-            Frames.add(new Frame(FrameCounter,PlayerDuck.x,PlayerDuck.y));
+            Frames.add(new Frame(FrameCounter,PlayerDuck.x,PlayerDuck.y,0,"10","20"));
             //System.out.println("Frames"+FrameCounter);
             FrameCounter+=1;
         
