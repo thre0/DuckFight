@@ -272,7 +272,9 @@ public class NetGame {
         }    
             Frames.add(new Frame(FrameCounter,PlayerDuck.x,PlayerDuck.y,0,"10","20"));
             //System.out.println("Frames"+FrameCounter);
-            FrameCounter+=1;
+            if(FrameCounter<100000)
+                FrameCounter+=1;
+            else FrameCounter=1;
         
         if(connected)SecondDuck.TeleportDuck(XNet, YNet);
         //System.out.println(mousePosition.x + "||" + mousePosition.y);
